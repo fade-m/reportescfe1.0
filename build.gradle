@@ -71,9 +71,6 @@ bootRun {
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
 
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
-
 tasks.withType(Test) {
 
     systemProperty "geb.env", System.getProperty('geb.env')
