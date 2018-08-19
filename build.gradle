@@ -73,6 +73,18 @@ bootRun {
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
 
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+
+task copyToLib(type: Copy) {
+    into "$buildDir/lib"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)
+
 task stage() {
     dependsOn clean, war
 }
